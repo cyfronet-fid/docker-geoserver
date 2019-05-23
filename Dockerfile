@@ -27,10 +27,10 @@ ARG INITIAL_MEMORY="2G"
 RUN set -e \
     export DEBIAN_FRONTEND=noninteractive \
     dpkg-divert --local --rename --add /sbin/initctl \
-    apt-get -y update \
+    && apt-get -y update \
     #Install extra fonts to use with sld font markers
-    apt-get install -y fonts-cantarell lmodern ttf-aenigma ttf-georgewilliams ttf-bitstream-vera ttf-sjfonts tv-fonts \
-        build-essential libapr1-dev libssl-dev default-jdk \
+    && apt-get install -y fonts-cantarell lmodern ttf-aenigma ttf-georgewilliams ttf-bitstream-vera ttf-sjfonts tv-fonts \
+        build-essential libapr1-dev libssl-dev default-jdk p7zip-full \
     # Set JAVA_HOME to /usr/lib/jvm/default-java and link it to OpenJDK installation
     && ln -s /usr/lib/jvm/java-8-openjdk-amd64 /usr/lib/jvm/default-java \
     && (echo "Yes, do as I say!" | apt-get remove --force-yes login) \
@@ -56,7 +56,13 @@ ENV \
        #-XX:+UseConcMarkSweepGC use this rather than parallel GC?
     ## Unset Java related ENVs since they may change with Oracle JDK
     JAVA_VERSION= \
-    JAVA_DEBIAN_VERSION= 
+    JAVA_DEBIAN_VERSION=
+
+
+WORKDIR /opt/geoserver
+
+ADD data/prg.7z /opt/geoserver/prg.7z
+RUN 7z x prg.7z && rm prg.7z
 
 WORKDIR /scripts
 
@@ -69,8 +75,6 @@ ADD scripts/sqljdbc4-4.0.jar $CATALINA_HOME/webapps/geoserver/WEB-INF/lib/
 
 RUN /scripts/setup.sh \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*  \
-    && dpkg --remove --force-depends  unzip
-
-
+    && dpkg --remove --force-depends  unzip p7zip-full
 
 CMD ["/scripts/entrypoint.sh"]

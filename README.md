@@ -7,6 +7,8 @@ a separate section.
 A simple docker container that runs Geoserver influenced by this docker
 recipe: https://github.com/eliotjordan/docker-geoserver/blob/master/Dockerfile
 
+**IMPORTANT:** make sure that git lfs is installed on your system (https://git-lfs.github.com/) 
+
 ## sat4envi essentials
 
 Versions:
@@ -17,20 +19,11 @@ Versions:
 ### Building image
 
 Just run:
-```shell
-./build.sh
 ```
-it will create a docker image `cyfronet-fid/geoserver:${GS-VERSION}`.
+docker build .
+```
 
 Make sure you are ok with the default memory requirements.
-
-### Running image
-
-```shell
-docker run -p 8080:8080 -t \
-    -v `/absolute/path/to/s3.properties:/opt/geoserver/s3.properties \
-    cyfronet-fid/geoserver:${GS-VERSION}
-```
 
 ## Getting the image
 
