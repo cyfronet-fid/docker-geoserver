@@ -1,10 +1,13 @@
 #!/bin/bash
-set -e
 
-source /root/.bashrc
+export JAVA_OPTS="${JAVA_OPTS} ${GEOSERVER_OPTS} ${GEOSERVER_RUN_OPTS}"
 
-## Preparare the JVM command line arguments
-export JAVA_OPTS="${JAVA_OPTS} ${GEOSERVER_OPTS}"
+# copy the source data_dir if the used $GEOSERVER_DATA_DIR is empty
+pushd $GEOSERVER_DATA_DIR
+if [[ "$(ls -A .)"='' ]]; then
+    cp -r ../data_dir_source/* .
+fi
+popd
 
 /scripts/update_passwords.sh
-exec /usr/local/tomcat/bin/catalina.sh run
+/usr/local/tomcat/bin/catalina.sh run
