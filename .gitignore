@@ -10,3 +10,4 @@ btsync-media.env
 btsync-db.env
 /s3.properties
 /docker-geoserver.iml
+/dist
