@@ -10,4 +10,5 @@ fi
 popd
 
 /scripts/update_passwords.sh
+/scripts/setup_jdbcconfig.sh
 /usr/local/tomcat/bin/catalina.sh run
