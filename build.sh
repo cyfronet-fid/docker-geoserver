@@ -9,8 +9,14 @@ disable_services(){
     done
 }
 
-# Add option below to use local maven cache (speeds up build)
-#    -v "$HOME/.m2":/root/.m2 \
+docker run -it --rm \
+    -v "$HOME/.m2":/root/.m2 \
+    -v $(pwd):/usr/src/docker-geoserver \
+    -w /usr/src/docker-geoserver/geotools \
+    maven:3.6.2-jdk-11 \
+    mvn clean install -DskipTests -Ps3-geotiff
+
+# Note that the GeoServer build depends on the GeoTools package, so the .m2 dir must contain the built artifacts
 docker run -it --rm \
     -v "$HOME/.m2":/root/.m2 \
     -v $(pwd):/usr/src/docker-geoserver \

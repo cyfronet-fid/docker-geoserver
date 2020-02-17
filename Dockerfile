@@ -14,6 +14,6 @@ RUN chmod +x /scripts/*.sh
 
 ENV \
     GEOSERVER_DATA_DIR=/opt/geoserver/data_dir \
-    GEOSERVER_OPTS="-Ds3.properties.location=/opt/geoserver/s3.properties"
+    GEOSERVER_OPTS="-Ds3.properties.location=/opt/geoserver/s3.properties -Duser.timezone=GMT -Dit.geosolutions.skip.external.files.lookup=true"
 
 CMD ["/scripts/entrypoint.sh"]
