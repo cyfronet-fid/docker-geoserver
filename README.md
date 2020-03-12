@@ -28,7 +28,6 @@ To create a container run:
 ```shell
 docker run \
     -e GEOSERVER_ADMIN_PASSWORD=<password> \
-    -e JDBCCONFIG_ENABLED=false \
     -e JNDI_URL="jdbc:postgresql://db:5432/sat4envi" \
     -e JNDI_USERNAME="sat4envi" \
     -e JNDI_PASSWORD="sat4envi" \

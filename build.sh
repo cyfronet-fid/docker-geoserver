@@ -22,7 +22,7 @@ docker run -it --rm \
     -v $(pwd):/usr/src/docker-geoserver \
     -w /usr/src/docker-geoserver/geoserver/src \
     maven:3.6.2-jdk-11 \
-    mvn clean package -DskipTests -Ps3-geotiff -Pjdbcconfig
+    mvn clean package -DskipTests -Ps3-geotiff
 
 rm -rf dist/
 mkdir dist/
@@ -40,11 +40,6 @@ rm -rf dist/geoserver
 mkdir dist/data_dir
 cp -r geoserver/data/minimal/* dist/data_dir
 cp -r geoserver/data/release/security dist/data_dir
-
-JDBCCONFIG_RESOURCES_PATH=geoserver/src/community/jdbcconfig/src/main/resources
-mkdir -p dist/data_dir/jdbcconfig/scripts
-cp $JDBCCONFIG_RESOURCES_PATH/jdbcconfig.properties dist/data_dir/jdbcconfig
-cp $JDBCCONFIG_RESOURCES_PATH/org/geoserver/jdbcconfig/internal/*.postgres.sql dist/data_dir/jdbcconfig/scripts
 
 pushd dist/data_dir
 rm -rf workspaces/*

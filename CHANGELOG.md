@@ -14,6 +14,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Tomcat is updated to 9.0.31
 
+### Removed
+
+- JDBCConfig support
+
 ## [1.2.0-GS2.16.2]
 
 ### Changed
