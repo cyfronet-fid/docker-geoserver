@@ -7,7 +7,7 @@ Based on kartoza/docker-geoserver, stripped down and modified to fit sat4envi re
 Versions:
 - GeoServer 2.16.2,
 - GeoTools 22.2 (patched),
-- Tomcat 9.0.24.
+- Tomcat 9.0.31.
 
 Requirements:
 - docker `^18.09.6`,
@@ -29,6 +29,9 @@ To create a container run:
 docker run \
     -e GEOSERVER_ADMIN_PASSWORD=<password> \
     -e JDBCCONFIG_ENABLED=false \
+    -e JNDI_URL="jdbc:postgresql://db:5432/sat4envi" \
+    -e JNDI_USERNAME="sat4envi" \
+    -e JNDI_PASSWORD="sat4envi" \
     -v <path/to/s3.properties>:/opt/geoserver/s3.properties \
     -v <path/to/data_dir>:/opt/geoserver/data_dir \
     -e GEOSERVER_RUN_OPTS='-Xms1G -Xmx4G' \

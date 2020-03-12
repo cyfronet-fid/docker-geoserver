@@ -1,9 +1,11 @@
-FROM tomcat:9.0.24-jdk11-openjdk
+FROM tomcat:9.0.31-jdk11-openjdk
 
 RUN rm -rf $CATALINA_HOME/webapps/*
 
-ADD geoserver/src/web/app/target/geoserver.war /usr/local/tomcat/webapps/geoserver.war
+ADD dist/geoserver.war /usr/local/tomcat/webapps/geoserver.war
 ADD lib/jasypt-1.9.2.jar /lib/jasypt-1.9.2.jar
+ADD dist/tomcat-lib/*.jar /usr/local/tomcat/lib
+ADD context.xml /usr/local/tomcat/conf/context.xml
 
 ADD dist/data_dir/ /opt/geoserver/data_dir_source/
 RUN mkdir /opt/geoserver/data_dir/

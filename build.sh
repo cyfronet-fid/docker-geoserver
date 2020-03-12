@@ -27,6 +27,16 @@ docker run -it --rm \
 rm -rf dist/
 mkdir dist/
 
+# Unpack the geoserver.war, move postgresql lib to tomcat lib dir and repack geoserver.war (for JNDI)
+unzip geoserver/src/web/app/target/geoserver.war -d dist/geoserver
+mkdir dist/tomcat-lib
+mv dist/geoserver/WEB-INF/lib/postgresql-*.jar dist/tomcat-lib
+pushd dist/geoserver
+zip -r geoserver.war .
+mv geoserver.war ..
+popd
+rm -rf dist/geoserver
+
 mkdir dist/data_dir
 cp -r geoserver/data/minimal/* dist/data_dir
 cp -r geoserver/data/release/security dist/data_dir
