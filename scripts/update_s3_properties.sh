@@ -1,0 +1,8 @@
+#!/bin/bash
+
+S3_PROPERTIES_PATH=/opt/geoserver/s3.properties
+ENDPOINT_ALIAS=mailto
+
+echo "$ENDPOINT_ALIAS.s3.endpoint=$S3_ENDPOINT"    > $S3_PROPERTIES_PATH
+echo "$ENDPOINT_ALIAS.s3.user=$S3_ACCESS_KEY"     >> $S3_PROPERTIES_PATH
+echo "$ENDPOINT_ALIAS.s3.password=$S3_SECRET_KEY" >> $S3_PROPERTIES_PATH

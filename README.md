@@ -31,10 +31,12 @@ To create a container run:
 ```shell
 docker run \
     -e GEOSERVER_ADMIN_PASSWORD=<password> \
+    -e S3_ENDPOINT="http://minio:9000/" \
+    -e S3_ACCESS_KEY="minio" \
+    -e S3_SECRET_KEY="minio123" \
     -e JNDI_URL="jdbc:postgresql://db:5432/sat4envi" \
     -e JNDI_USERNAME="sat4envi" \
     -e JNDI_PASSWORD="sat4envi" \
-    -v <path/to/s3.properties>:/opt/geoserver/s3.properties \
     -v <path/to/data_dir>:/opt/geoserver/data_dir \
     -e GEOSERVER_RUN_OPTS='-Xms1G -Xmx4G' \
     -p 8080:8080 -d <image-tag>
@@ -45,18 +47,9 @@ It should be customized with `GEOSERVER_ADMIN_PASSWORD` as shown above.
 
 Use `GEOSERVER_RUN_OPTS` to specify JVM options, such as memory requirements.
 
-It is also necessary to mount `s3.properties` file with S3 endpoint configuration.
-
-Data dir should be mounted as well.
+Data dir should be mounted.
 In case it is empty, it will be initialized with a pre-built data_dir.
 This template disables services other than WMS and doesn't contain any more data.
-
-
-### Giving GeoServer access to s3.properties file
-
-GeoServer will try to look for the s3-geotiff configuration in `/opt/geoserver/s3.properties`.
-Mount a volume pointing to a local `s3.properties` file by adding `-v
-</path/to/s3.properties>:/opt/geoserver/s3.properties` to docker run options.
 
 
 ## Version scheme
