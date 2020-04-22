@@ -21,7 +21,7 @@ It will build the GeoServer, extract the PRG archive and prepare GeoServer data_
 
 Then run `docker build .` to build the image.
 
-When publishing the image, tag it when building with `docker build -t fiddev/geoserver:<version>`.
+When publishing the image, tag it when building with `docker build -t fiddev/geoserver:<version> .`.
 And then `docker push fiddev/geoserver:<version>`.
 
 
