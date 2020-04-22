@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- Tomcat is updated to 9.0.34
 - Control S3 properties (endpoint, access key and secret key) from envvars
 
 ## [1.3.0-GS2.16.2]

@@ -5,9 +5,9 @@ Based on kartoza/docker-geoserver, stripped down and modified to fit sat4envi re
 ## Essentials
 
 Versions:
-- GeoServer 2.16.2,
-- GeoTools 22.2 (patched),
-- Tomcat 9.0.31.
+- GeoServer 2.17.0,
+- GeoTools 23.0 (patched),
+- Tomcat 9.0.34.
 
 Requirements:
 - docker `^18.09.6`,

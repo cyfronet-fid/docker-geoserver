@@ -13,7 +13,7 @@ docker run -it --rm \
     -v "$HOME/.m2":/root/.m2 \
     -v $(pwd):/usr/src/docker-geoserver \
     -w /usr/src/docker-geoserver/geotools \
-    maven:3.6.2-jdk-11 \
+    maven:3.6.3-jdk-11 \
     mvn clean install -DskipTests -Ps3-geotiff -T1C
 
 # Note that the GeoServer build depends on the GeoTools package, so the .m2 dir must contain the built artifacts
@@ -21,7 +21,7 @@ docker run -it --rm \
     -v "$HOME/.m2":/root/.m2 \
     -v $(pwd):/usr/src/docker-geoserver \
     -w /usr/src/docker-geoserver/geoserver/src \
-    maven:3.6.2-jdk-11 \
+    maven:3.6.3-jdk-11 \
     mvn clean package -DskipTests -Ps3-geotiff -T1C
 
 rm -rf dist/

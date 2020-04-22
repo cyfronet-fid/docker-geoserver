@@ -1,4 +1,4 @@
-FROM tomcat:9.0.31-jdk11-openjdk
+FROM tomcat:9.0.34-jdk11-openjdk
 
 RUN rm -rf $CATALINA_HOME/webapps/*
 
