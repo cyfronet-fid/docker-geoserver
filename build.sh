@@ -47,6 +47,8 @@ rm styles/*
 disable_services csw.xml wcs.xml wfs.xml
 popd
 
+cp wms.xml dist/data_dir/
+
 pushd dist
 docker run -it --rm \
     -v $(pwd)/../data/prg.7z:/data/prg.7z \
