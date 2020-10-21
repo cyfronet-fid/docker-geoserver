@@ -38,6 +38,7 @@ docker run \
     -e JNDI_USERNAME="sat4envi" \
     -e JNDI_PASSWORD="sat4envi" \
     -v <path/to/data_dir>:/opt/geoserver/data_dir \
+    -v <optionally/path/to/custom/cache/config.xml>:/opt/geoserver/s3-cache.xml \
     -e GEOSERVER_RUN_OPTS='-Xms1G -Xmx4G' \
     -p 8080:8080 -d <image-tag>
 ```
@@ -50,6 +51,10 @@ Use `GEOSERVER_RUN_OPTS` to specify JVM options, such as memory requirements.
 Data dir should be mounted.
 In case it is empty, it will be initialized with a pre-built data_dir.
 This template disables services other than WMS and doesn't contain any more data.
+
+A default S3 cache is used, which is specified in s3-cache.xml.
+It can be customized by mounting an alternative configuration under `/opt/geoserver/s3-cache.xml`.
+In particular, GeoServer s3-geotiff module uses ehCache 2.10.3.
 
 
 ## Version scheme
