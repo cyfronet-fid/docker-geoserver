@@ -6,14 +6,14 @@ update_param() {
   PARAM_NAME=$1
   PARAM_ENV_NAME=$2
   DEFAULT_VALUE=$3
-  mv $CONTEXT_XML_PATH $CONTEXT_XML_PATH.tmp
   if [ -n "${!PARAM_ENV_NAME}" ]; then
-    SED_ARG="s| $PARAM_NAME=\".*\"| $PARAM_NAME=\"${!PARAM_ENV_NAME}\"|"
+    TARGET_VALUE=${!PARAM_ENV_NAME}
   else
-    SED_ARG="s| $PARAM_NAME=\".*\"| $PARAM_NAME=\"$DEFAULT_VALUE\"|"
+    TARGET_VALUE=$DEFAULT_VALUE
   fi
-  cat $CONTEXT_XML_PATH.tmp | sed -e "$SED_ARG" > $CONTEXT_XML_PATH
-  rm $CONTEXT_XML_PATH.tmp
+  sed --in-place \
+      --expression="s| $PARAM_NAME=\".*\"| $PARAM_NAME=\"$TARGET_VALUE\"|" \
+      $CONTEXT_XML_PATH
 }
 
 update_param name                   JNDI_NAME                     "jdbc/sat4envi"
