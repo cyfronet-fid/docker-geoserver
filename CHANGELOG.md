@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- Configure S3 GeoWebCache
+
 ## [1.5.0-GS2.18.0]
 
 ### Changed

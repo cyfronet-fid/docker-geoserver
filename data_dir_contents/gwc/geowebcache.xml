@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gwcConfiguration xmlns="http://geowebcache.org/schema/1.15.0">
+    <version>1.15.0</version>
+    <backendTimeout>120</backendTimeout>
+    <blobStores>
+        <S3BlobStore default="true">
+            <id>s3-blobstore</id>
+            <enabled>true</enabled>
+            <bucket></bucket>
+            <awsAccessKey></awsAccessKey>
+            <awsSecretKey></awsSecretKey>
+            <access></access>
+            <useHTTPS></useHTTPS>
+            <endpoint></endpoint>
+            <useGzip></useGzip>
+        </S3BlobStore>
+    </blobStores>
+    <layers/>
+</gwcConfiguration>

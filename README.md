@@ -34,6 +34,9 @@ docker run \
     -e S3_ENDPOINT="http://minio:9000/" \
     -e S3_ACCESS_KEY="minio" \
     -e S3_SECRET_KEY="minio123" \
+    -e GWC_ENDPOINT="http://minio:9000" \
+    -e GWC_AWS_ACCESS_KEY="minio" \
+    -e GWC_AWS_SECRET_KEY="minio123" \
     -e JNDI_URL="jdbc:postgresql://db:5432/sat4envi" \
     -e JNDI_USERNAME="sat4envi" \
     -e JNDI_PASSWORD="sat4envi" \
@@ -55,6 +58,11 @@ This template disables services other than WMS and doesn't contain any more data
 A default S3 cache is used, which is specified in s3-cache.xml.
 It can be customized by mounting an alternative configuration under `/opt/geoserver/s3-cache.xml`.
 In particular, GeoServer s3-geotiff module uses ehCache 2.10.3.
+
+By default, GWC cache with S3 blob store is used for tile caching.
+It requires a separate configuration from the scene data access (the envvars `GWC_*`)
+and can be configured to use a local minio while scenes are loaded from Ceph.
+It stores the data in `s4e-gwc` bucket (created automatically if doesn't exist) if not configured otherwise.
 
 
 ## Version scheme

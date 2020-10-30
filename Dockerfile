@@ -1,19 +1,19 @@
 FROM tomcat:9.0.39-jdk11-openjdk
 
+COPY dist/data_dir/ /opt/geoserver/data_dir_source/
+RUN mkdir /opt/geoserver/data_dir/
+COPY dist/prg/ /opt/geoserver/prg/
+COPY s3-cache.xml /opt/geoserver/s3-cache.xml
+
+COPY scripts/ /scripts/
+RUN chmod +x /scripts/*.sh
+
 RUN rm -rf $CATALINA_HOME/webapps/*
 
-ADD dist/geoserver.war /usr/local/tomcat/webapps/geoserver.war
-ADD lib/jasypt-1.9.2.jar /lib/jasypt-1.9.2.jar
-ADD dist/tomcat-lib/*.jar /usr/local/tomcat/lib
-ADD context.xml /usr/local/tomcat/conf/context.xml
-
-ADD dist/data_dir/ /opt/geoserver/data_dir_source/
-RUN mkdir /opt/geoserver/data_dir/
-ADD dist/prg/ /opt/geoserver/prg/
-ADD s3-cache.xml /opt/geoserver/s3-cache.xml
-
-ADD scripts/ /scripts/
-RUN chmod +x /scripts/*.sh
+COPY dist/geoserver.war /usr/local/tomcat/webapps/geoserver.war
+COPY lib/jasypt-1.9.2.jar /lib/jasypt-1.9.2.jar
+COPY dist/tomcat-lib/*.jar /usr/local/tomcat/lib
+COPY context.xml /usr/local/tomcat/conf/context.xml
 
 ENV \
     GEOSERVER_DATA_DIR=/opt/geoserver/data_dir \
