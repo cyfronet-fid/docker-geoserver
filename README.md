@@ -5,9 +5,9 @@ Based on kartoza/docker-geoserver, stripped down and modified to fit sat4envi re
 ## Essentials
 
 Versions:
-- GeoServer 2.18.0,
-- GeoTools 24.0 (patched),
-- Tomcat 9.0.39.
+- GeoServer 2.19.1,
+- GeoTools 25.1 (patched),
+- Tomcat 9.0.46.
 
 Requirements:
 - docker `^18.09.6`,
@@ -34,6 +34,7 @@ docker run \
     -e S3_ENDPOINT="http://minio:9000/" \
     -e S3_ACCESS_KEY="minio" \
     -e S3_SECRET_KEY="minio123" \
+    -e GWC_BUCKET="s4e-gwc" \
     -e GWC_ENDPOINT="http://minio:9000" \
     -e GWC_AWS_ACCESS_KEY="minio" \
     -e GWC_AWS_SECRET_KEY="minio123" \
