@@ -1,4 +1,4 @@
-FROM tomcat:9.0.39-jdk11-openjdk
+FROM tomcat:9.0.46-jdk11-openjdk
 
 COPY dist/data_dir/ /opt/geoserver/data_dir_source/
 RUN mkdir /opt/geoserver/data_dir/
