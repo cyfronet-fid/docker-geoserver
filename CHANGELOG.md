@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.6.1-GS2.19.1]
+
+- Update tomcat to 9.0.46 and GeoServer to 2.19.1
+
 ## [1.6.0-GS2.18.0]
 
 - Configure S3 GeoWebCache
